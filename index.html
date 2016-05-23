@@ -55,26 +55,30 @@
 
 <div id="output_container" style="display:none">
   <label for="output_url">Output</label>
-  <span id="output_url">sdsd</span>
+  <span id="output_url"></span>
 </div>
 
-<div>
+<div id="button_container" style="display: none">
 <br>
   <button type="button" id="parse">Parse »</button>
 </div>
-    <div class="tai"></div>
-
 </body>
 
 <script src="./ss_files/jquery.min.js"></script>
 <script type="text/javascript">
 (function($){
+  $('#url_input').keyup(function(){
+    if($(this).val() != '') {
+      $('#button_container').show();
+    } else {
+      $('#button_container').hide();
+    }
+  });
   $('#parse').click(function () {
       var x = $('#url_input').val(),
           phrase = $('#phrase').val(),
           output = '',
           last = x.substring(x.lastIndexOf("/") + 1, x.length);
-      console.log(x);
       output = phrase.replace('{link}', last);
       if(output != '') {
         $('#output_container').show();
